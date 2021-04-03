@@ -6,3 +6,5 @@
 # Configuracion de WebStorm
 .idea
 pass.txt
+public/audios/
+public/portadas/
