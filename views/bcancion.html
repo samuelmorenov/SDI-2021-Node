@@ -18,46 +18,34 @@
     </div>
 </div>
 
-<!-- -->
-<div class="row" style="margin-top: 20px;">
+<!-- Comentarios -->
+<div class="row">
     <div class="media col-xs-10">
-        <div class="media-left media-middle">
-            <a href="#">
-                <img class="media-object" src="img/user.png">
-            </a>
-        </div>
+        <h2>Comentarios</h2>
         <div class="media-body">
-            <h4 class="media-heading">Middle aligned media</h4>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras
-            purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-            fringilla. Donec lacinia congue felis in faucibus.
-        </div>
-    </div>
-    <div class="media col-xs-10">
-        <div class="media-left media-middle">
-            <a href="#">
-                <img class="media-object" src="img/user.png">
-            </a>
-        </div>
-        <div class="media-body">
-            <h4 class="media-heading">Middle aligned media</h4>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras
-            purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-            fringilla. Donec lacinia congue felis in faucibus.
-        </div>
-    </div>
-    <div class="media col-xs-10">
-        <div class="media-left media-middle">
-            <a href="#">
-                <img class="media-object" src="img/user.png">
-            </a>
-        </div>
-        <div class="media-body">
-            <h4 class="media-heading">Middle aligned media</h4>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras
-            purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-            fringilla. Donec lacinia congue felis in faucibus.
+            {% for comentario in comentarios %}
+            <div>
+                <div class="wrap">Autor: {{ comentario.autor }}</div>
+                <div class="small">Comentario: {{ comentario.texto }}</div>
+            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
+
+
+<!-- Agregar comentario -->
+<form class="form-horizontal" method="post" action="/comentario/{{ cancion._id.toString() }}">
+    <div class="media col-xs-10">
+        <h2>Agregar Comentario</h2>
+        <div class="form-group">
+            <label for="texto">Texto:</label>
+            <input type="text" class="form-control" name="texto" required="true"/>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Agregar</button>
+        </div>
+    </div>
+</form>
+
 {% endblock %}
