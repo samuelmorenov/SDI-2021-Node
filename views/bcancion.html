@@ -27,6 +27,7 @@
             <div>
                 <div class="wrap">Autor: {{ comentario.autor }}</div>
                 <div class="small">Comentario: {{ comentario.texto }}</div>
+                <div class="small"> <a href="/comentario/borrar/{{ comentario._id.toString() }}"> Borrar </a></div>
             </div>
             {% endfor %}
         </div>
