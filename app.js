@@ -91,6 +91,10 @@ require("./routes/rcanciones.js")(app, swig, gestorBD);
 require("./routes/rautores.js")(app, swig, gestorBD);
 require("./routes/rcomentarios.js")(app, swig, gestorBD);
 
+app.get('/', function (req, res) {
+    res.redirect('/tienda');
+});
+
 // lanzar el servidor
 app.listen(app.get('port'), function () {
     console.log("Servidor activo en http://localhost:8081/");
