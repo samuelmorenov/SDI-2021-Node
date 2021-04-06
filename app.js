@@ -2,6 +2,9 @@
 let express = require('express');
 let app = express();
 
+let fs = require('fs');
+let https = require('https');
+
 let expressSession = require('express-session');
 app.use(expressSession({secret: 'abcdefg', resave: true, saveUninitialized: true}));
 let crypto = require('crypto');
@@ -89,8 +92,8 @@ app.use("/audios/",routerAudios);
 app.use(express.static('public'));
 
 //Contraseña
-let fs = require('fs');
-let pass = fs.readFileSync('pass.txt', 'utf-8');
+let fs2 = require('fs');
+let pass = fs2.readFileSync('pass.txt', 'utf-8');
 
 // Variables
 app.set('port', 8081);
@@ -108,7 +111,18 @@ app.get('/', function (req, res) {
     res.redirect('/tienda');
 });
 
+app.use(function (err, req, res, next) {
+    console.log("Error producido: " + err);
+    if (!res.headersSent) {
+        res.status(400);
+        res.send("Recurso no disponible");
+    }
+});
+
 // lanzar el servidor
-app.listen(app.get('port'), function () {
-    console.log("Servidor activo en http://localhost:8081/");
+https.createServer({
+        key: fs.readFileSync('certificates/alice.key'),
+        cert: fs.readFileSync('certificates/alice.crt')
+    }, app).listen(app.get('port'), function () {
+        console.log("Servidor activo en https://localhost:8081/");
 });
