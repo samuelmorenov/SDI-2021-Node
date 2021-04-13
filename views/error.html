@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block titulo %} Se ha producido un error {% endblock %}
+
+{% block contenido_principal %}
+
+{% if texto != null %}
+<h2>{{ texto }}</h2>
+{% endif %}
+
+{% if texto == null %}
+<h2>Se ha producido un error</h2>
+{% endif %}
+
+{% endblock %}
